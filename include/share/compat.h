@@ -42,6 +42,11 @@
 #include <stddef.h>
 #include <stdarg.h>
 
+#if defined __ANDROID__ && (defined __arm__ || defined __i386__) && __ANDROID_API__ < 24
+#define fseeko fseek
+#define ftello ftell
+#endif
+
 #if defined _WIN32 && !defined __CYGWIN__
 /* where MSVC puts unlink() */
 # include <io.h>
